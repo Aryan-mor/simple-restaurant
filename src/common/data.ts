@@ -23,3 +23,4 @@ export const data: plate[] = [
         img: BluePlate
     },
 ]
+

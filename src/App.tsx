@@ -4,15 +4,16 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home"
 import InvoiceSingle from "./pages/invoices/InvoiceSingle"
 import InvoicesList from "./pages/invoices/InvoicesList";
+import ROUTS from "./common/ROUTS";
 
 function App() {
     return (
         <div className="App">
             <Header/>
             <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="invoices">
-                    <Route path=":id" element={<InvoiceSingle/>}/>
+                <Route path={ROUTS.Home.rout} element={<Home/>}/>
+                <Route path={ROUTS.Invoices.rout}>
+                    <Route path={ROUTS.Invoices.Single.rout} element={<InvoiceSingle/>}/>
                     <Route index element={<InvoicesList/>}/>
                 </Route>
             </Routes>

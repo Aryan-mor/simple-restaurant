@@ -1,0 +1,66 @@
+h1, .h1 {
+  font-size: 3em;
+}
+
+h2, .h2 {
+  font-size: 2.5em;
+}
+
+h3, .h3 {
+  font-size: 2.2em;
+}
+
+h4, .h4 {
+  font-size: 2em;
+}
+
+h5, .h5 {
+  font-size: 1.8em;
+}
+
+h6, .h6 {
+  font-size: 1.6em;
+}
+
+span, .span {
+  font-size: 1.4em;
+}
+
+p, .paragraph {
+  font-size: 1em;
+}
+
+
+a {
+  color: #444;
+  text-decoration: none;
+  -webkit-transition: color 300ms ease;
+  -moz-transition: color 300ms ease;
+  -ms-transition: color 300ms ease;
+  -o-transition: color 300ms ease;
+  transition: color 300ms ease;
+
+  &:hover {
+    color: #000;
+  }
+}
+
+.container {
+  padding: 0.01em 16px;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
