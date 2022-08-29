@@ -2,7 +2,7 @@ import {plate} from "./type";
 import RedPlate from "../img/red-plate.jpg"
 import GreenPlate from "../img/green-plate.jpg"
 import BluePlate from "../img/blue-plate.jpg"
-import {convertPriceToUSD} from "./utils";
+import {convertToUSD} from "./priceUtils";
 
 const redPlatePrice = 32.95
 export const data: plate[] = [
@@ -11,7 +11,8 @@ export const data: plate[] = [
         price: redPlatePrice,
         code: 'R01',
         img: RedPlate,
-        description: `Buy 2 Pay ${convertPriceToUSD(redPlatePrice + (redPlatePrice / 2))}`
+        secondHalf: true,
+        description: `Buy 2 Pay ${convertToUSD(redPlatePrice + (redPlatePrice / 2))}`
     },
     {
         name: "Green Plate",

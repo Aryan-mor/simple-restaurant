@@ -1,27 +1,22 @@
-import React, {useCallback, useContext, useEffect, useState} from "react";
-import {Props} from "../common/type"
+import React, {useCallback, useContext, useMemo, useState} from "react";
+import {basketContextType, basketContextWithoutCallbackType, basketType, invoiceType, Props} from "../common/type"
 import Storage from "../common/Storage";
-
-type basketType = {
-    [key: string]: number
-}
-
-type basketContextWithoutCallbackType = {
-    count: number,
-    basket: basketType,
-}
-
-type basketContextType = basketContextWithoutCallbackType & {
-    onAdd: (code: string, count?: number) => void
-    onRemove: (code: string) => void
-}
+import {data} from "../common/data";
+import {getPrice, roundPrice} from "../common/priceUtils";
 
 export const defaultBasketContext = {
     count: 0,
     basket: {},
+    summary: {
+        totalPlatePrice: 0,
+        discount: 0,
+        deliveryPrice: 0
+    },
     onAdd: () => {
     },
     onRemove: () => {
+    },
+    onPayment: () => {
     }
 };
 
@@ -29,16 +24,21 @@ const BasketContext = React.createContext<basketContextType>(defaultBasketContex
 export default BasketContext;
 
 const STORAGE_KEY = "basket";
+const INVOICE_KEY = "invoice";
 
 export function BasketContextContainer({children}: Props) {
+
     const [count, setCount] = useState<number>((() => {
+        // Revalidate user Basket Count from LocalStorage
         const {count} = Storage.get<basketContextWithoutCallbackType>(STORAGE_KEY, {
             count: 0,
             basket: {}
         })
         return count
     })())
+
     const [basket, setBasket] = useState<basketType>((() => {
+        // Revalidate user Basket from LocalStorage
         const {basket} = Storage.get<basketContextWithoutCallbackType>(STORAGE_KEY, {
             count: 0,
             basket: {}
@@ -63,14 +63,51 @@ export function BasketContextContainer({children}: Props) {
         handleAddToBasket(code, 0)
     }, [handleAddToBasket])
 
-    useEffect(() => {
-        const {count, basket} = Storage.get<basketContextWithoutCallbackType>(STORAGE_KEY, {
+    const handlePayment = useCallback((): void => {
+        if (count <= 0) {
+            return
+        }
+        // Add invoice to storage
+        const invoiceList = Storage.get<invoiceType[]>(INVOICE_KEY, [])
+        const newInvoice = {
+            id: invoiceList[invoiceList.length].id,
+            count,
+            basket,
+            date: new Date()
+        } as invoiceType;
+
+        invoiceList.push(newInvoice)
+        Storage.set(INVOICE_KEY, invoiceList)
+
+        // Rest Basket
+        Storage.set(STORAGE_KEY, {
             count: 0,
             basket: {}
         })
-        setCount(count)
-        setBasket(basket)
-    }, [])
+        setCount(0)
+        setBasket({})
+    }, [basket, count])
+
+
+    const [totalPlatePrice, discount, deliveryPrice] = useMemo(() => {
+        // Calculation the basket summary price
+        let discount = 0;
+        let totalPlatePrice = 0;
+        Object.keys(basket).forEach(code => {
+            const count = basket[code]
+            const plate = data.find(d => d.code === code)
+            if (!plate || count <= 0)
+                return
+            const {price, secondHalf} = plate;
+            if (secondHalf && count > 1) {
+                discount += roundPrice(price / 2)
+            }
+            totalPlatePrice += getPrice(plate, count)
+        })
+
+        const deliveryPrice = totalPlatePrice < 50 ? 4.95 : totalPlatePrice < 90 ? 2.95 : 0
+        return [totalPlatePrice, discount, deliveryPrice]
+    }, [basket])
 
 
     return (
@@ -78,7 +115,13 @@ export function BasketContextContainer({children}: Props) {
             count,
             basket,
             onAdd: handleAddToBasket,
-            onRemove: handleRemoveFromBasket
+            onRemove: handleRemoveFromBasket,
+            onPayment: handlePayment,
+            summary: {
+                totalPlatePrice,
+                discount,
+                deliveryPrice
+            }
         }}>
             {children}
         </BasketContext.Provider>

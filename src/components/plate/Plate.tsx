@@ -1,40 +1,8 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {plate} from "../../common/type";
-import {convertPriceToUSD} from "../../common/utils";
+import {convertToUSD} from "../../common/priceUtils";
 import {Button, Form} from "react-bootstrap";
 import {useBasketContext} from "../../context/Basket";
-
-type propType = {
-    plate: plate
-}
-
-const Plate = ({plate}: propType) => {
-
-    const {img, name, code, description, price} = plate
-
-    return (
-        <div className="rounded  flex-row card d-flex h-100 p-2">
-            <div className="d-flex col-4 me-4 align-items-center">
-                <img className="w-100 rounded" alt={name} src={img}/>
-            </div>
-            <div className="h-100 flex-fill d-flex flex-column justify-content-between ">
-                <div>
-                    <h3 className="h4">{name}</h3>
-                    {
-                        description &&
-                        <p>
-                            {description}
-                        </p>
-                    }
-                    <span className="h5 text-success">{convertPriceToUSD(price)}</span>
-                </div>
-                <div className="d-flex col-8 align-self-end justify-content-end">
-                    <AddBasketButton code={code}/>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 
 type addBasketButtonProps = {
@@ -62,6 +30,13 @@ const AddBasketButton = ({code}: addBasketButtonProps) => {
         onAdd(code, Number(e.currentTarget.value))
     }
 
+    useEffect(() => {
+        // Reset Button type when basket reset
+        if (basket[code] >= 1)
+            return
+        setShowCountSelector(false)
+    }, [basket, code])
+
 
     if (showCountSelector)
         return (
@@ -83,5 +58,39 @@ const AddBasketButton = ({code}: addBasketButtonProps) => {
         </Button>
     )
 }
+
+type propType = {
+    plate: plate
+}
+
+
+const Plate = ({plate}: propType) => {
+
+    const {img, name, code, description, price} = plate
+
+    return (
+        <div className="rounded flex-row card d-flex h-100 p-2">
+            <div className="d-flex col-4 me-4 align-items-center">
+                <img className="w-100 rounded" alt={name} src={img}/>
+            </div>
+            <div className="h-100 flex-fill d-flex flex-column justify-content-between ">
+                <div>
+                    <h3 className="h4">{name}</h3>
+                    {
+                        description &&
+                        <p>
+                            {description}
+                        </p>
+                    }
+                    <span className="h5 text-success">{convertToUSD(price)}</span>
+                </div>
+                <div className="d-flex col-8 align-self-end justify-content-end">
+                    <AddBasketButton code={code}/>
+                </div>
+            </div>
+        </div>
+    )
+}
+
 
 export default Plate;
