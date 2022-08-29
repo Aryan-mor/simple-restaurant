@@ -11,7 +11,7 @@ const ROUTS = {
             rout: ':invoiceId',
             title: 'Invoice',
             createLink: (invoiceId: number): string => {
-                return `${ROUTS.Invoices.rout}/${invoiceId}`
+                return `/${ROUTS.Invoices.rout}/${invoiceId}`
             },
             getTitle: (invoiceTitle: string): string => {
                 return `${ROUTS.Invoices.Single.title} - ${invoiceTitle}`

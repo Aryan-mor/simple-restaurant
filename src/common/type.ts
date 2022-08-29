@@ -20,12 +20,14 @@ export type basketContextWithoutCallbackType = {
     basket: basketType,
 }
 
+type summeryType = {
+    totalPlatePrice: number,
+    discount: number,
+    deliveryPrice: number
+}
+
 export type basketContextType = basketContextWithoutCallbackType & {
-    summary: {
-        totalPlatePrice: number,
-        discount: number,
-        deliveryPrice: number
-    },
+    summary: summeryType,
     onAdd: (code: string, count?: number) => void
     onRemove: (code: string) => void
     onPayment: () => void
@@ -33,5 +35,6 @@ export type basketContextType = basketContextWithoutCallbackType & {
 
 export type invoiceType = basketContextWithoutCallbackType & {
     id: number,
-    date: Date
+    date: Date,
+    summery: summeryType
 }
