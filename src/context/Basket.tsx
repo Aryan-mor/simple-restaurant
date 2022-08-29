@@ -70,7 +70,7 @@ export function BasketContextContainer({children}: Props) {
         // Add invoice to storage
         const invoiceList = Storage.get<invoiceType[]>(INVOICE_KEY, [])
         const newInvoice = {
-            id: invoiceList[invoiceList.length].id,
+            id: invoiceList?.[invoiceList?.length]?.id || 1,
             count,
             basket,
             date: new Date()
@@ -87,7 +87,6 @@ export function BasketContextContainer({children}: Props) {
         setCount(0)
         setBasket({})
     }, [basket, count])
-
 
     const [totalPlatePrice, discount, deliveryPrice] = useMemo(() => {
         // Calculation the basket summary price
@@ -127,7 +126,6 @@ export function BasketContextContainer({children}: Props) {
         </BasketContext.Provider>
     )
 }
-
 
 export function useBasketContext() {
     return useContext(BasketContext)
