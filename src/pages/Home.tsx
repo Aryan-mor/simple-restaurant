@@ -1,9 +1,13 @@
 import React from "react";
-
+import Plates from "../components/plates/Plates"
 
 const Home = () => {
 
-    return <h1>Home</h1>
+    return (
+        <div>
+            <Plates/>
+        </div>
+    )
 }
 
 export default Home

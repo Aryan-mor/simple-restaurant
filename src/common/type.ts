@@ -1,6 +1,12 @@
+export interface Props {
+    children: JSX.Element[] | JSX.Element
+}
+
 export type plate = {
     name: string,
     price: number,
     code: string,
-    img: any
+    description?: string,
+    img: any,
 }
+
