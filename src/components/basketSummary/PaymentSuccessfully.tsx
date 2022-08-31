@@ -20,7 +20,8 @@ export default function PaymentSuccessfully({
                 </h5>
                 <i
                     role="button"
-                    className="p-1 fa-solid fa-xmark text-white"
+                    data-cy="successfully-close-btn"
+                    className=" p-1 fa-solid fa-xmark text-white"
                     onClick={() => onClose(false)}
                 />
             </div>

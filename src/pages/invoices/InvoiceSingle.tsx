@@ -70,7 +70,8 @@ const InvoiceSingle = () => {
                     }))
                 }
             </div>
-            <div className="card d-flex flex-column p-3 col-12 col-md-5 col-xl-3 align-self-start">
+            <div data-cy="invoice-summery"
+                 className="card d-flex flex-column p-3 col-12 col-md-5 col-xl-3 align-self-start">
                 <span className="pb-2">
                     Discount Price: {convertToUSD(discount)}
                 </span>

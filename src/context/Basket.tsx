@@ -93,7 +93,6 @@ export function BasketContextContainer({children}: Props) {
         }
         // Add invoice to storage
         const invoiceList = Storage.get<invoiceType[]>(INVOICE_STORAGE_KEY, [])
-        console.log("sajfklasjf", invoiceList)
         const newInvoice = {
             id: (invoiceList?.[invoiceList?.length - 1]?.id + 1) || 1,
             count,

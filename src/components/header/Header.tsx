@@ -27,7 +27,7 @@ const Header = () => {
                     {
                         menu.map(({name, to}) => (
                             <li key={name} className="span px-2 py-1 align-items-center">
-                                <Link to={to} className="h6">{name}</Link>
+                                <Link to={to} data-cy={name.toLocaleLowerCase()} className="h6">{name}</Link>
                             </li>
                         ))
                     }

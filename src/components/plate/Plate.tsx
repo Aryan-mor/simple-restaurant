@@ -40,7 +40,7 @@ const AddBasketButton = ({code}: addBasketButtonProps) => {
 
     if (showCountSelector)
         return (
-            <div className="d-flex mt-2 align-items-center">
+            <div className="add-select d-flex mt-2 align-items-center">
                 <span className="pe-2">Count:</span>
                 <Form.Select value={basket[code]} onChange={handleCountChange}
                              aria-label="Default select example">
@@ -55,7 +55,7 @@ const AddBasketButton = ({code}: addBasketButtonProps) => {
         )
 
     return (
-        <Button className="align-self-end" onClick={handleClick}>
+        <Button className="add-btn align-self-end" onClick={handleClick}>
             Add
         </Button>
     )
@@ -71,7 +71,7 @@ const Plate = ({plate}: propType) => {
     const {img, name, code, description, price} = plate
 
     return (
-        <div className="rounded flex-row card d-flex h-100 p-3">
+        <div className="plate rounded flex-row card d-flex h-100 p-3">
             <div className="d-flex col-3 col-lg-4 pe-4  align-items-center">
                 <img className="w-100 rounded" alt={name} src={img}/>
             </div>
