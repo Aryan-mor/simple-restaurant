@@ -12,9 +12,15 @@ describe('example to-do app', () => {
     it('add to basket and buy and check invoice', () => {
         const addBtnEl = cy.get(".plate:first-child .add-btn").first();
         addBtnEl.click();
-        const selectEl = cy.get(".plate:first-child .add-select select").first();
-        selectEl.should('be.visible')
-        selectEl.select('3').should('have.value', '3');
+
+        cy.get('.plate:first-child [data-cy="decrease-count"]').first().should('be.visible')
+        cy.get('.plate:first-child [data-cy="increase-count"]').first().should('be.visible')
+        cy.get('.plate:first-child [data-cy="increase-count"]').first().click({force: true})
+        cy.get('.plate:first-child [data-cy="count"]').first().should("have.text", "2")
+        cy.get('.plate:first-child [data-cy="decrease-count"]').first().click()
+        cy.get('.plate:first-child [data-cy="count"]').first().should("have.text", "1")
+        cy.get('.plate:first-child [data-cy="increase-count"]').first().click({force: true})
+
         const btnEl = cy.get(".payment-btn")
         btnEl.should('be.visible')
         btnEl.get(".payment-btn").click()

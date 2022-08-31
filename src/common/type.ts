@@ -8,7 +8,8 @@ export type plate = {
     code: string,
     description?: string,
     img: any,
-    secondHalf?: boolean
+    secondHalf?: boolean,
+    max: number
 }
 
 export type basketType = {

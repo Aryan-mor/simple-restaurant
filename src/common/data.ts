@@ -12,19 +12,22 @@ export const data: plate[] = [
         code: 'R01',
         img: RedPlate,
         secondHalf: true,
-        description: `Buy 2 Pay ${convertToUSD(redPlatePrice + (redPlatePrice / 2))}`
+        description: `Buy 2 Pay ${convertToUSD(redPlatePrice + (redPlatePrice / 2))}`,
+        max: 8
     },
     {
         name: "Green Plate",
         price: 24.95,
         code: 'G01',
-        img: GreenPlate
+        img: GreenPlate,
+        max: 6
     },
     {
         name: "Blue Plate",
         price: 7.95,
         code: 'B01',
-        img: BluePlate
+        img: BluePlate,
+        max: 9
     },
 ]
 
