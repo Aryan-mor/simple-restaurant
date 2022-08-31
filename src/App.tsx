@@ -10,7 +10,7 @@ import {BasketContextContainer} from "./context/Basket";
 function App() {
     return (
         <BasketContextContainer>
-            <div className="App">
+            <div className="App mb-3">
                 <Header/>
                 <Routes>
                     <Route path={ROUTS.Home.rout} element={<Home/>}/>

@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import {useBasketContext} from "../../context/Basket";
 import ShowSummary from "./ShowSummary";
+import PaymentSuccessfully from "./PaymentSuccessfully";
 
 const Empty = () => {
     return (
@@ -14,14 +15,21 @@ const Empty = () => {
 
 const style = {top: 15}
 const BasketSummary = () => {
-    const {count} = useBasketContext()
+    const [showPaymentSuccessfully, setShowPaymentSuccessfully] = useState(false)
+    const {count, onPayment} = useBasketContext()
+
+    function handlePayment() {
+        onPayment()
+        setShowPaymentSuccessfully(true)
+    }
 
     return (
         <div className="sticky-top card p-3 col-12 col-lg-3 flex-fill mt-3 align-self-start"
              style={style}>
             {count <= 0 ?
                 <Empty/> :
-                <ShowSummary/>}
+                <ShowSummary onPayment={handlePayment}/>}
+            <PaymentSuccessfully show={showPaymentSuccessfully} onClose={setShowPaymentSuccessfully}/>
         </div>
     )
 }

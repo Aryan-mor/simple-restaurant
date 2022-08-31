@@ -5,8 +5,8 @@ import {convertToUSD} from "../../common/priceUtils";
 import {Button} from "react-bootstrap";
 
 
-const ShowSummary = () => {
-    const {basket, summary, onPayment} = useBasketContext()
+const ShowSummary = ({onPayment}: { onPayment: () => void }) => {
+    const {basket, summary,} = useBasketContext()
     const {totalPlatePrice, discount, deliveryPrice} = summary;
 
     return (
