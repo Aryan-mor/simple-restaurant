@@ -6,7 +6,7 @@ import PaymentSuccessfully from "./PaymentSuccessfully";
 const Empty = () => {
     return (
         <span className="h6 d-flex justify-content-center align-items-center m-0">
-            Your Basket is Empty
+            Your Basket Is Empty
             <i className="fa-solid fa-face-grin-beam-sweat ms-2"/>
         </span>
     )
