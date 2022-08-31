@@ -17,7 +17,7 @@ const BasketSummary = () => {
     const {count} = useBasketContext()
 
     return (
-        <div className="sticky-top card p-3 flex-fill mt-3 align-self-start"
+        <div className="sticky-top card p-3 col-12 col-lg-3 flex-fill mt-3 align-self-start"
              style={style}>
             {count <= 0 ?
                 <Empty/> :

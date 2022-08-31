@@ -20,14 +20,14 @@ const Header = () => {
     return (
         <header className='container header d-flex align-items-center'>
             <div className="d-flex align-items-center flex-fill">
-                <div className="logo">
-                    <Link to={ROUTS.Home.rout}><img alt="site logo" src={Logo}/></Link>
+                <div className="col-2 col-lg-1">
+                    <Link to={ROUTS.Home.rout}><img className={"w-100 h-auto"} alt="site logo" src={Logo}/></Link>
                 </div>
-                <ul>
+                <ul className={"m-0 ps-2"}>
                     {
                         menu.map(({name, to}) => (
-                            <li key={name} className="span">
-                                <Link to={to} className="h5">{name}</Link>
+                            <li key={name} className="span px-2 py-1 align-items-center">
+                                <Link to={to} className="h6">{name}</Link>
                             </li>
                         ))
                     }

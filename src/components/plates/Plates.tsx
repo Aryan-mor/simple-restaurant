@@ -7,9 +7,9 @@ const Plates = () => {
 
 
     return (
-        <div className="container flex d-flex flex-wrap col-9 align-self-start">
+        <div className=" flex d-flex flex-wrap col-12 col-lg-9 align-self-start">
             {data.map((plate) => (
-                <div key={plate.code} className="col-12 col-lg-6 p-3">
+                <div key={plate.code} className="col-12 col-lg-6 py-2 py-lg-3 px-lg-3">
                     <Plate plate={plate}/>
                 </div>
             ))}

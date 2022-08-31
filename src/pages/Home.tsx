@@ -5,7 +5,7 @@ import BasketSummary from "../components/basketSummary/BasketSummary";
 const Home = () => {
 
     return (
-        <div className="container d-flex mt-5">
+        <div className="container d-flex flex-wrap mt-5">
             <Plates/>
             <BasketSummary/>
         </div>

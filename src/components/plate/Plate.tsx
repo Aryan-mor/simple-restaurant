@@ -54,7 +54,7 @@ const AddBasketButton = ({code}: addBasketButtonProps) => {
 
     return (
         <Button className="align-self-end" onClick={handleClick}>
-            Add to basket
+            Add
         </Button>
     )
 }
@@ -69,11 +69,11 @@ const Plate = ({plate}: propType) => {
     const {img, name, code, description, price} = plate
 
     return (
-        <div className="rounded flex-row card d-flex h-100 p-2">
-            <div className="d-flex col-4 me-4 align-items-center">
+        <div className="rounded flex-row card d-flex h-100 p-3">
+            <div className="d-flex col-3 col-lg-4 pe-4  align-items-center">
                 <img className="w-100 rounded" alt={name} src={img}/>
             </div>
-            <div className="h-100 flex-fill d-flex flex-column justify-content-between ">
+            <div className="h-100 flex-fill d-flex flex-column  justify-content-between ">
                 <div>
                     <h3 className="h4">{name}</h3>
                     {
