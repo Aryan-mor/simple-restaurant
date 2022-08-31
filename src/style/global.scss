@@ -11,3 +11,47 @@ a {
     color: #000;
   }
 }
+
+.text-orange {
+  color: #f5951e;
+}
+
+.text-green {
+  color: #8fc644;
+}
+
+.bg-orange {
+  background-color: #f5951e;
+}
+
+.btn-orange {
+  border-width: 0;
+
+  &, &:focus {
+    background-color: #f5951e;
+  }
+
+  &:hover {
+    background-color: #ce7a13;
+  }
+
+  &:disabled {
+    background-color: #735532;
+  }
+}
+
+.btn-green {
+  border-width: 0;
+
+  &, &:focus {
+    background-color: #8fc644;
+  }
+
+  &:hover {
+    background-color: #669328;
+  }
+
+  &:disabled {
+    background-color: #80af57;
+  }
+}

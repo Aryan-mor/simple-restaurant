@@ -34,12 +34,12 @@ const Header = () => {
                 </ul>
             </div>
             <div>
-                <span className="btn btn-primary position-relative pe-none">
-                    <i className="fa-solid fa-basket-shopping"/>
+                <span className="btn btn-green position-relative pe-none">
+                    <i className="fa-solid fa-basket-shopping text-white"/>
                     {
                         count > 0 &&
                         <span
-                            className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                            className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-orange">
                             {count}
                         </span>
                     }

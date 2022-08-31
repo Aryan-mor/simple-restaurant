@@ -27,7 +27,6 @@ const InvoiceSingle = () => {
     if (!invoiceData)
         return <React.Fragment/>
 
-    console.log("askjfkasf", invoiceData)
 
     const {id, count, basket, date, summery} = invoiceData
     const {totalPlatePrice, deliveryPrice, discount} = summery

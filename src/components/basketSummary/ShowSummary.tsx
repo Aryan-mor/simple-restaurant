@@ -44,7 +44,7 @@ const ShowSummary = ({onPayment}: { onPayment: () => void }) => {
                 </span>
             </div>
             <Button
-                className={'payment-btn mt-3 w-100'}
+                className={'payment-btn btn-green mt-3 w-100'}
                 onClick={onPayment}>
                 Order Now
             </Button>
