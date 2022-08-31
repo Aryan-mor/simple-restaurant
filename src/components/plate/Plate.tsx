@@ -45,9 +45,11 @@ const AddBasketButton = ({code}: addBasketButtonProps) => {
                 <Form.Select value={basket[code]} onChange={handleCountChange}
                              aria-label="Default select example">
                     <option>Remove</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
+                    {
+                        new Array(9).fill({}).map((_, index) => (
+                            <option key={index} value={index + 1}>{index + 1}</option>
+                        ))
+                    }
                 </Form.Select>
             </div>
         )
